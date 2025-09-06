@@ -7,7 +7,7 @@ export default function PatchExplainer() {
 
     const run = async () => {
         if (!raw.trim()) return;
-        setSummary("Анализируем патчноуты…");
+        setSummary("Готовлю краткое объяснение патча...");
         try {
             const res = await api.patchExplain(raw);
             setSummary(res.summary);
@@ -18,7 +18,7 @@ export default function PatchExplainer() {
 
     return (
         <div>
-            <textarea className="mt8" rows={8} placeholder="Вставь текст патчноутов..." value={raw} onChange={e => setRaw(e.target.value)} style={{ width: "100%" }} />
+            <textarea className="mt8" rows={8} placeholder="Вставьте текст патчноутов..." value={raw} onChange={e => setRaw(e.target.value)} style={{ width: "100%" }} />
             <div className="mt8">
                 <button onClick={run}>Объяснить изменения</button>
             </div>
@@ -26,3 +26,4 @@ export default function PatchExplainer() {
         </div>
     );
 }
+

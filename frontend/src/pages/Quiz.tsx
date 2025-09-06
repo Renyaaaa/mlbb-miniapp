@@ -19,17 +19,17 @@ export default function Quiz() {
         if (!quiz) return;
         setPicked(idx);
         const res = await api.quizCheck(quiz.quiz_id, idx);
-        setResult(res.correct ? "Верно ✅" : "Неверно ❌");
+        setResult(res.correct ? "Верно" : "Неверно");
     };
 
     return (
         <div>
             <div className="row">
-                <input placeholder="Тема (герои, предметы…)" value={topic} onChange={e => setTopic(e.target.value)} />
+                <input placeholder="Тема (герой, билд, эмблемы...)" value={topic} onChange={e => setTopic(e.target.value)} />
                 <select value={difficulty} onChange={e => setDifficulty(e.target.value as any)}>
-                    <option value="easy">Лёгкий</option>
-                    <option value="medium">Средний</option>
-                    <option value="hard">Сложный</option>
+                    <option value="easy">Лёгкая</option>
+                    <option value="medium">Средняя</option>
+                    <option value="hard">Сложная</option>
                 </select>
                 <button onClick={generate}>Сгенерировать вопрос</button>
             </div>
@@ -53,3 +53,4 @@ export default function Quiz() {
         </div>
     );
 }
+

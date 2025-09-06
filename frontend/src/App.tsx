@@ -23,7 +23,7 @@ function App() {
     <div className="container">
       <header className="header">
         <h1>MLBB Mini App</h1>
-        <small className="api">API: {API_BASE}</small>
+        <small className="api">API: {API_BASE} · <AIPing /></small>
       </header>
 
       <nav className="tabs">
@@ -50,3 +50,15 @@ function App() {
 }
 
 export default App
+
+function AIPing() {
+  const [state, setState] = useState<string>("AI?")
+  const ping = async () => {
+    try {
+      const r = await fetch(`${API_BASE}/debug/ai-ping`)
+      const j = await r.json()
+      setState(j.ok ? `AI: OK (${j.model ?? ''})` : `AI: off`)
+    } catch { setState('AI: error') }
+  }
+  return <button onClick={ping} style={{ padding: '2px 6px' }}>{state}</button>
+}

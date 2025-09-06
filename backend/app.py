@@ -419,6 +419,20 @@ def tg_verify(body: TGVerifyReq):
         print("[ERROR] /tg/verify:", e)
         raise HTTPException(500, "Verification failed")
 
+@app.get("/debug/ai-ping")
+def debug_ai_ping():
+    if not os.getenv("GEMINI_API_KEY"):
+        return {"ok": False, "reason": "no_api_key"}
+    try:
+        import google.generativeai as genai  # type: ignore
+        model = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        resp = genai.GenerativeModel(model).generate_content("ok")
+        txt = (getattr(resp, "text", "") or "").strip().lower()
+        return {"ok": txt == "ok", "model": model}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
 @app.post("/youtube/video-for-hero")
 def youtube_video_for_hero(body: HeroPick):
     if not HAS_YT or not os.getenv("YOUTUBE_API_KEY"):

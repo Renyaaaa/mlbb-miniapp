@@ -22,10 +22,10 @@ export default function TierList() {
     return (
         <div>
             <div className="row">
-                <input placeholder="Роль (Assassin/Tank…)" value={role} onChange={e => setRole(e.target.value)} />
-                <input placeholder="Линия (mid/gold/exp/jungle…)" value={lane} onChange={e => setLane(e.target.value)} />
-                <input placeholder="Ранг (Legend+/Mythic…)" value={skill} onChange={e => setSkill(e.target.value)} />
-                <button onClick={run}>{loading ? "Строим…" : "Собрать Tier List"}</button>
+                <input placeholder="Роль (Assassin/Tank...)" value={role} onChange={e => setRole(e.target.value)} />
+                <input placeholder="Линия (mid/gold/exp/jungle...)" value={lane} onChange={e => setLane(e.target.value)} />
+                <input placeholder="Ранг (Legend+/Mythic...)" value={skill} onChange={e => setSkill(e.target.value)} />
+                <button onClick={run}>{loading ? "Генерация..." : "Собрать Tier List"}</button>
             </div>
 
             {data && (
@@ -39,3 +39,4 @@ export default function TierList() {
         </div>
     );
 }
+

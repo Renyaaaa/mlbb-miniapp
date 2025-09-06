@@ -6,13 +6,14 @@ export default function Challenge() {
 
     const load = async () => {
         const res = await api.dailyGenerate();
-        setText(`${res.date}: ${res.text}` + (res.cached ? " (сохранён)" : ""));
+        setText(`${res.date}: ${res.text}` + (res.cached ? " (из кэша)" : ""));
     };
 
     return (
         <div>
-            <button onClick={load}>Получить челлендж дня</button>
+            <button onClick={load}>Сгенерировать челлендж дня</button>
             <div className="mt12"><pre style={{ whiteSpace: "pre-wrap" }}>{text}</pre></div>
         </div>
     );
 }
+
