@@ -5,7 +5,7 @@ export default function TierList() {
     const [role, setRole] = useState("");
     const [lane, setLane] = useState("");
     const [skill, setSkill] = useState("");
-    const [note, setNote] = useState("");
+    const [note] = useState("");
     const [data, setData] = useState<{ S: string[], A: string[], B: string[], notes: string } | null>(null);
     const [loading, setLoading] = useState(false);
 
